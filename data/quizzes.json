@@ -1,0 +1,251 @@
+{
+  "quizzes": [
+    {
+      "id": "javascript-basics",
+      "title": "JavaScript Basics",
+      "language": "JavaScript",
+      "questions": [
+        {
+          "id": 1,
+          "prompt": "Declare a variable named `name` using `const`.",
+          "answer": "const name = 'Alice';"
+        },
+        {
+          "id": 2,
+          "prompt": "Create a function named `add` that accepts `a` and `b`.",
+          "answer": "function add(a, b) { return a + b; }"
+        },
+        {
+          "id": 3,
+          "prompt": "Log `Hello, world!` to the console.",
+          "answer": "console.log('Hello, world!');"
+        }
+      ]
+    },
+    {
+      "id": "python-basics",
+      "title": "Python Basics",
+      "language": "Python",
+      "questions": [
+        {
+          "id": 1,
+          "prompt": "Declare a variable named `name` with the value `Alice`.",
+          "answer": "name = \"Alice\""
+        },
+        {
+          "id": 2,
+          "prompt": "Print `Hello, world!`.",
+          "answer": "print(\"Hello, world!\")"
+        }
+      ]
+    },
+    {
+      "id": "1192a0d8-d1f9-43db-bd60-47f3d5f5d6c3",
+      "title": "museum/router.js",
+      "language": "JavaScript",
+      "questions": [
+        {
+          "id": "155db073-59d7-47a3-b64e-6f60fcd26826",
+          "prompt": "Display \"Hello, World!\"",
+          "answer": "console.log(\"Hello, World!\");"
+        },
+        {
+          "id": "f3f5da3f-e672-4df3-8209-6ceaa25e586a",
+          "prompt": "Import the File System module.",
+          "answer": "const fs = require(\"fs\");"
+        },
+        {
+          "id": "75553b27-fa8e-4968-bb00-b3949abe8618",
+          "prompt": "Import the Path module.",
+          "answer": "const path = require(\"path\");"
+        },
+        {
+          "id": "11082a97-fe0c-4003-94cf-f5cda73dcc62",
+          "prompt": "Import loginHandler.",
+          "answer": "const { loginHandler } = require(\"./handlers/login\");"
+        },
+        {
+          "id": "2cd8951b-6b96-4a37-a7a1-ec870ce77fd1",
+          "prompt": "Declare an asynchronous router function that accepts req and res.",
+          "answer": "async function router(req, res)"
+        },
+        {
+          "id": "da202ff3-b932-4654-b5f4-873090b45a4c",
+          "prompt": "Check if the request is a POST request",
+          "answer": "req.method === \"POST\""
+        },
+        {
+          "id": "6cd3aeb7-d3e9-4024-b0f0-8ce0232d8739",
+          "prompt": "Check if the URL is /api/login",
+          "answer": "req.url === \"/api/login\""
+        },
+        {
+          "id": "28bde47b-5fa8-479d-9372-61c3ebd6217f",
+          "prompt": "Call the login handler and wait for it to finish.",
+          "answer": "await loginHandler(req, res);"
+        },
+        {
+          "id": "6fa6e0b6-6acd-447e-9f09-8cc978081693",
+          "prompt": "Exit the router immediately after the handler runs.",
+          "answer": "return;"
+        },
+        {
+          "id": "f78a7277-0464-46c5-a91c-c2f58041a570",
+          "prompt": "Check if the URL is the site root.",
+          "answer": "req.url === \"/\""
+        },
+        {
+          "id": "d451eb90-5b6f-42f7-91d4-117410f3d028",
+          "prompt": "Send the home page.",
+          "answer": "sendPage(res, \"index.html\", \"text/html\");"
+        },
+        {
+          "id": "91e45329-b7f3-4e7d-8f23-d2f67930e609",
+          "prompt": "Send the admin dashboard page",
+          "answer": "sendPage(res, \"admin-dashboard.html\", \"text/html\");"
+        },
+        {
+          "id": "4073e89a-1613-4b7d-82e6-3f29336d29ca",
+          "prompt": "Send the CSS file with the correct content type.",
+          "answer": "sendPage(res, \"style.css\", \"text/css\");"
+        },
+        {
+          "id": "c4d8159b-8929-4ffe-a212-2a3943b4b2aa",
+          "prompt": "Build a cross-platform path to js/login.js",
+          "answer": "path.join(\"js\", \"login.js\")"
+        },
+        {
+          "id": "af24512b-18c8-4de6-aa0e-f89dbc357a41",
+          "prompt": "Check whether a URL begins with /images/",
+          "answer": "req.url.startsWith(\"/images/\")"
+        },
+        {
+          "id": "32eac176-6254-483b-a8be-4de723cf24a3",
+          "prompt": "Extract only the filename from a URL",
+          "answer": "path.basename(req.url)"
+        },
+        {
+          "id": "d467b3a4-15a1-47a1-9a6a-e3e52b1f728e",
+          "prompt": "Get a file's extension",
+          "answer": "path.extname(filename)"
+        },
+        {
+          "id": "18fcf5ee-4d6f-49c2-b332-f1f9097043e3",
+          "prompt": "Convert an extension to lowercase.",
+          "answer": "path.extname(filename).toLowerCase()"
+        },
+        {
+          "id": "f9df1ed7-fa81-422b-93d4-405c326688e5",
+          "prompt": "Set the content type for a PNG image.",
+          "answer": "contentType = \"image/png\";"
+        },
+        {
+          "id": "57804d72-6f39-413d-b6e6-b4fde9f5eec7",
+          "prompt": "Send a 404 response header.",
+          "answer": "res.writeHead(404, { \"Content-Type\": \"text/html\" });"
+        },
+        {
+          "id": "15a004ba-bba9-4a2a-b0c0-1bfaf5fe1047",
+          "prompt": "Log an error to the console.",
+          "answer": "console.error(error);"
+        },
+        {
+          "id": "f56d8bea-b940-4e11-aac2-19118eae0e1f",
+          "prompt": "Convert an error object into JSON before sending it.",
+          "answer": "JSON.stringify({ error: error.message })"
+        },
+        {
+          "id": "58c938de-0a2e-4530-a79a-8f948b11f061",
+          "prompt": "Build a path to a file inside the public folder.",
+          "answer": "path.join(__dirname, \"public\", filename)"
+        },
+        {
+          "id": "0f507d10-f071-4924-a800-65dba14bfe36",
+          "prompt": "Export the router from this module.",
+          "answer": "module.exports = router;"
+        },
+        {
+          "id": "afc393a4-e0c1-4fdb-9d45-d2bced6c754f",
+          "prompt": "Read a file asynchronously using the fs module.",
+          "answer": "fs.readFile(filePath, (err, data) => {})"
+        },
+        {
+          "id": "b6a7940d-b4a2-4e55-a818-ea2998e1b586",
+          "prompt": "Check if an error object exists.",
+          "answer": "if (err)"
+        },
+        {
+          "id": "f1b52234-076a-441f-97e7-691702ea1a23",
+          "prompt": "Send a successful HTTP response.",
+          "answer": "res.writeHead(200, { \"Content-Type\": contentType });"
+        },
+        {
+          "id": "aceaf46b-5d40-44b9-8d1b-8993924f44b9",
+          "prompt": "Send file data to the client.",
+          "answer": "res.end(data);"
+        },
+        {
+          "id": "8407cae7-3704-4413-8951-8803756ba184",
+          "prompt": "Give an unknown file type the default binary MIME type.",
+          "answer": "let contentType = \"application/octet-stream\";"
+        },
+        {
+          "id": "486f15f2-572f-47f6-9acf-cc40d5a4594c",
+          "prompt": "Send the login JavaScript file.",
+          "answer": "sendPage(\n    res,\n    path.join(\"js\", \"login.js\"),\n    \"application/javascript\"\n);"
+        },
+        {
+          "id": "9fe183d1-98be-4419-b28f-0df8696c3d80",
+          "prompt": "Declare a variable for a file extension.",
+          "answer": "const ext = path.extname(filename).toLowerCase();"
+        },
+        {
+          "id": "6e7a596b-628e-49b4-ad3a-9339a995e0b9",
+          "prompt": "Set the content type for a JPEG image.",
+          "answer": "contentType = \"image/jpeg\";"
+        },
+        {
+          "id": "81367320-6998-49be-851d-a690f0ef60e8",
+          "prompt": "Send a simple 404 page.",
+          "answer": "res.end(\"<h1>404 - Page Not Found</h1>\");"
+        },
+        {
+          "id": "38c68b05-20ea-425f-8609-e276e7efc381",
+          "prompt": "Check whether response headers have already been sent.",
+          "answer": "res.headersSent"
+        },
+        {
+          "id": "c1276bf6-41bf-4738-bc97-34cb8926b7ee",
+          "prompt": "Determine whether an error is a TypeError.",
+          "answer": "error instanceof TypeError"
+        }
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "quizId": "javascript-basics",
+      "score": 1,
+      "total": 3,
+      "completedAt": "2026-09-25T03:31:32.256Z"
+    },
+    {
+      "quizId": "1192a0d8-d1f9-43db-bd60-47f3d5f5d6c3",
+      "score": 1,
+      "total": 1,
+      "completedAt": "2026-09-25T03:41:11.419Z"
+    },
+    {
+      "quizId": "1192a0d8-d1f9-43db-bd60-47f3d5f5d6c3",
+      "score": 10,
+      "total": 29,
+      "completedAt": "2026-09-25T15:14:16.126Z"
+    },
+    {
+      "quizId": "1192a0d8-d1f9-43db-bd60-47f3d5f5d6c3",
+      "score": 29,
+      "total": 35,
+      "completedAt": "2026-09-27T18:52:52.272Z"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typed Quiz</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Typed Quiz</h1>
+
+    <section id="management-screen">
+      <h2>Quiz Sets</h2>
+      <button type="button" id="export-quizzes">Export Questions and Answers</button>
+
+      <form id="set-form" class="form">
+        <input id="set-title" placeholder="Set title" required />
+        <input id="set-language" placeholder="Programming language" required />
+        <button type="submit">Create Set</button>
+      </form>
+
+      <div id="set-list"></div>
+
+      <section id="set-editor" hidden>
+        <hr />
+        <h2 id="editor-title"></h2>
+        <button type="button" id="export-set">Export This Set</button>
+
+        <form id="edit-set-form" class="form">
+          <input id="edit-set-title" required />
+          <input id="edit-set-language" required />
+          <button type="submit">Save Set</button>
+          <button type="button" id="delete-set" class="danger">
+            Delete Set
+          </button>
+        </form>
+
+        <h3>Questions</h3>
+
+        <form id="question-form" class="form">
+          <textarea id="question-prompt" placeholder="Question" required></textarea>
+          <textarea id="question-answer" placeholder="Expected code answer" required></textarea>
+          <button type="submit" id="question-submit">Add Question</button>
+          <button type="button" id="cancel-question" hidden>Cancel</button>
+        </form>
+
+        <div id="question-list"></div>
+
+        <button type="button" id="start-quiz">Start This Quiz</button>
+      </section>
+    </section>
+
+    <section id="quiz-screen" hidden>
+      <div class="quiz-header">
+        <h2 id="quiz-title"></h2>
+        <span id="progress"></span>
+      </div>
+
+      <p id="question"></p>
+
+      <textarea
+        id="answer"
+        placeholder="Type your answer here..."
+        rows="4"
+      ></textarea>
+
+      <button id="submit-answer">Submit Answer</button>
+      <button id="exit-quiz" class="secondary">Exit Quiz</button>
+
+      <p id="feedback"></p>
+    </section>
+
+    <section id="results" hidden>
+      <h2>Quiz Complete</h2>
+      <p id="score"></p>
+      <button id="restart">Back to Sets</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
