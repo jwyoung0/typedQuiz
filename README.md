@@ -22,3 +22,14 @@ To run a local instance, run the following in the terminal from the root directo
 npm start
 ```
 
+## Screenshots
+
+![Sample Question 1](image-1.png)
+
+![Sample Question 2](image-2.png)
+
+![Main View](image-3.png)
+
+![Add Questions](image-5.png)
+
+![Export Questions to .txt file](image-4.png)
