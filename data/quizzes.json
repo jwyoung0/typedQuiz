@@ -755,6 +755,12 @@
       "score": 10,
       "total": 20,
       "completedAt": "2026-11-09T16:21:06.417Z"
+    },
+    {
+      "quizId": "python-basics",
+      "score": 1,
+      "total": 2,
+      "completedAt": "2026-11-13T09:14:16.040Z"
     }
   ]
 }
