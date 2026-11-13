@@ -50,6 +50,7 @@ document.querySelector("#export-quizzes").addEventListener("click", () => {
 
 let selectedSet = null;
 let editingQuestionId = null;
+let quizQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 
@@ -283,6 +284,13 @@ startQuizButton.addEventListener("click", () => {
     return;
   }
 
+  quizQuestions = [...selectedSet.questions];
+  for (let index = quizQuestions.length - 1; index > 0; index--) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [quizQuestions[index], quizQuestions[randomIndex]] =
+      [quizQuestions[randomIndex], quizQuestions[index]];
+  }
+
   currentQuestionIndex = 0;
   score = 0;
 
@@ -298,13 +306,13 @@ function normalize(value) {
 }
 
 function showQuestion() {
-  const currentQuestion = selectedSet.questions[currentQuestionIndex];
+  const currentQuestion = quizQuestions[currentQuestionIndex];
 
   quizTitle.textContent =
     `${selectedSet.title} (${selectedSet.language})`;
 
   progress.textContent =
-    `Question ${currentQuestionIndex + 1} of ${selectedSet.questions.length}`;
+    `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
 
   questionElement.textContent = currentQuestion.prompt;
   answerElement.value = "";
@@ -313,7 +321,7 @@ function showQuestion() {
 }
 
 submitAnswerButton.addEventListener("click", async () => {
-  const currentQuestion = selectedSet.questions[currentQuestionIndex];
+  const currentQuestion = quizQuestions[currentQuestionIndex];
   const correct =
     normalize(answerElement.value) === normalize(currentQuestion.answer);
 
@@ -333,7 +341,7 @@ submitAnswerButton.addEventListener("click", async () => {
     currentQuestionIndex++;
     submitAnswerButton.disabled = false;
 
-    if (currentQuestionIndex >= selectedSet.questions.length) {
+    if (currentQuestionIndex >= quizQuestions.length) {
       await finishQuiz();
     } else {
       showQuestion();
@@ -347,14 +355,14 @@ async function finishQuiz() {
     body: JSON.stringify({
       quizId: selectedSet.id,
       score,
-      total: selectedSet.questions.length
+      total: quizQuestions.length
     })
   });
 
   quizScreen.hidden = true;
   resultsScreen.hidden = false;
   scoreElement.textContent =
-    `You scored ${score} out of ${selectedSet.questions.length}.`;
+    `You scored ${score} out of ${quizQuestions.length}.`;
 }
 
 function exitQuiz() {

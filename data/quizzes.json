@@ -2,23 +2,293 @@
   "quizzes": [
     {
       "id": "javascript-basics",
-      "title": "JavaScript Basics",
+      "title": "JavaScript - Ch. 3 - Types, Values,\tand Variables",
       "language": "JavaScript",
       "questions": [
         {
-          "id": 1,
-          "prompt": "Declare a variable named `name` using `const`.",
-          "answer": "const name = 'Alice';"
+          "id": "49692db4-e627-4094-8350-77481cb46475",
+          "prompt": "Create a hexadecimal literal representing 255.",
+          "answer": "0xff"
         },
         {
-          "id": 2,
-          "prompt": "Create a function named `add` that accepts `a` and `b`.",
-          "answer": "function add(a, b) { return a + b; }"
+          "id": "6cf93a9e-93f2-4881-b45f-975dd4ffe321",
+          "prompt": "Create a binary literal representing 21.",
+          "answer": "0b10101"
         },
         {
-          "id": 3,
-          "prompt": "Log `Hello, world!` to the console.",
-          "answer": "console.log('Hello, world!');"
+          "id": "37992cb0-8501-4de7-b012-8af100438d88",
+          "prompt": "Declare a numeric literal for one billion using numeric separators.",
+          "answer": "let billion = 1_000_000_000;"
+        },
+        {
+          "id": "8ec842b3-0f5a-4ac6-b071-930cf2a409c9",
+          "prompt": "Store Avogadro's number (6.02 x 10²³) in a variable named n.",
+          "answer": "let n = 6.02e23;"
+        },
+        {
+          "id": "1407ab63-8224-4f80-b13a-ba6382be2f73",
+          "prompt": "Compute 2 raised to the 10th power.",
+          "answer": "2 ** 10"
+        },
+        {
+          "id": "ddc0df04-1e33-43f5-968e-fef8393cfcd6",
+          "prompt": "Create a hexadecimal BigInt representing 2⁶³.",
+          "answer": "0x8000000000000000n"
+        },
+        {
+          "id": "a11526b0-64e0-435e-a2c1-f6b660347d5a",
+          "prompt": "Convert Number.MAX_SAFE_INTEGER to a BigInt.",
+          "answer": "BigInt(Number.MAX_SAFE_INTEGER)"
+        },
+        {
+          "id": "365d406d-dcf4-430a-8fe8-d6dbddc70935",
+          "prompt": "Get the current timestamp (milliseconds since Jan 1, 1970).",
+          "answer": "Date.now()"
+        },
+        {
+          "id": "bf7b3885-c005-4a4d-8527-6532f01df2b7",
+          "prompt": "Create a string containing <<I'm learning JavaScript>>.",
+          "answer": "'I\\'m learning JavaScript'"
+        },
+        {
+          "id": "9dcdb12f-f21d-4046-8269-d6a23b2d39c5",
+          "prompt": "Create a template literal that produces \"Hello Bill\" using a variable named <<name>>",
+          "answer": "let name = \"Bill\";\nlet greeting = `Hello ${name}.`;"
+        },
+        {
+          "id": "b206f176-836a-4cd4-b548-b16eea2d1076",
+          "prompt": "Extract the last 3 characters from \"Hello, world\"",
+          "answer": "\"Hello, world\".slice(-3)"
+        },
+        {
+          "id": "be428ed3-8228-44fb-81c8-3bace3fcae75",
+          "prompt": "Convert <<HELLO>> to lowercase",
+          "answer": "\"HELLO\".toLowerCase()"
+        },
+        {
+          "id": "098d4f55-5a17-4f69-a138-a0ad0f0778fa",
+          "prompt": "Test whether \"Hello, world\" contains the substring \"or\"",
+          "answer": "\"Hello, world\".includes(\"or\")"
+        },
+        {
+          "id": "b8f001aa-f87a-458a-b953-89e93a83a461",
+          "prompt": "Create a boolean expression that is true only if both x and y are zero",
+          "answer": "x === 0 && y === 0"
+        },
+        {
+          "id": "539ce5fa-c571-497c-be16-c051cc4a3a35",
+          "prompt": "Convert the string <<123>> to a number explicitly.",
+          "answer": "Number(\"123\")"
+        },
+        {
+          "id": "e51d9308-0fed-4b5d-9326-89de884b2161",
+          "prompt": "Convert the number <<42>> to a string explicitly.",
+          "answer": "String(42)"
+        },
+        {
+          "id": "811d95ad-d6a7-4a0d-b323-5aea966f59c1",
+          "prompt": "Convert a value x to a boolean using the short idiom from the chapter.",
+          "answer": "!!x"
+        },
+        {
+          "id": "ff0d05b6-3a84-46c5-9e21-79b30225bf66",
+          "prompt": "Use strict equality to test whether a is equal to 4.",
+          "answer": "a === 4"
+        },
+        {
+          "id": "b018a177-77be-40bd-b6ac-92061c0c3b7b",
+          "prompt": "Swap the values of variables x and y using destructuring assignment",
+          "answer": "[x, y] = [y, x];"
+        },
+        {
+          "id": "ef443750-6ae2-42c8-ac9a-5cb29f908765",
+          "prompt": "Given: const point = { x: 5, y: 10 }; Use object destructuring to create variables x and y.",
+          "answer": "const { x, y } = point;"
+        },
+        {
+          "id": "cd49d843-ebbe-4781-946b-8607021a418a",
+          "prompt": "Declare a variable named n using let and initialize it to 15.",
+          "answer": "let n = 15;"
+        },
+        {
+          "id": "f214cf1b-1029-4f45-997a-1f96b7003444",
+          "prompt": "Declare an empty array named result using const.",
+          "answer": "const result = [];"
+        },
+        {
+          "id": "2b90e093-e773-4b23-b936-0854ebd234db",
+          "prompt": "Create a function named fizzBuzz that accepts one parameter named n.",
+          "answer": "function fizzBuzz(n) {}"
+        },
+        {
+          "id": "eef245ab-4cda-42e9-907a-700c0a42e3d6",
+          "prompt": "Write an expression that checks whether n is divisible by 3 using the remainder operator.",
+          "answer": "n % 3 === 0"
+        },
+        {
+          "id": "2e4a04d1-4e00-4430-85cf-26ce49d9eb86",
+          "prompt": "Append the string \"Fizz\" to an array named result.",
+          "answer": "result.push(\"Fizz\");"
+        },
+        {
+          "id": "fa2debf8-fbdb-4c43-82ca-118efe0f20a3",
+          "prompt": "Convert the integer 42 into a string explicitly.",
+          "answer": "String(42)"
+        },
+        {
+          "id": "d8f468c5-41e0-4b50-933b-78985590b469",
+          "prompt": "Write a conditional expression that returns \"Fizz\" if n is divisible by 3 and \"Nope\" otherwise.",
+          "answer": "n % 3 === 0 ? \"Fizz\" : \"Nope\""
+        },
+        {
+          "id": "6d0efeb1-afba-4f54-80b5-d9dd07bab744",
+          "prompt": "Write a condition that checks whether n is divisible by both 3 and 5.",
+          "answer": "n % 3 === 0 && n % 5 === 0"
+        },
+        {
+          "id": "007decda-5a8c-4981-b412-df4261b1bc52",
+          "prompt": "Write a for loop that iterates from 1 through n, inclusive.",
+          "answer": "for (let i = 1; i <= n; i++) {}"
+        },
+        {
+          "id": "d8930338-1b1a-49db-997f-8726b76945ba",
+          "prompt": "Write an expression that converts the variable i into a string using its built-in method.",
+          "answer": "i.toString()"
+        },
+        {
+          "id": "53d1843b-54df-4f85-a558-f58793c3faf9",
+          "prompt": "Write a statement that returns the number of elements in an array named result.",
+          "answer": "return result.length;"
+        },
+        {
+          "id": "2a70f2c2-ae86-4ac0-a99f-0f15f5f9cc92",
+          "prompt": "Write a function that returns \"Fizz\" when n is divisible by 3 and otherwise returns the number as a string.",
+          "answer": "const fizz = n => n % 3 === 0 ? \"Fizz\" : String(n);"
+        },
+        {
+          "id": "762443c4-ec36-4915-90bf-ad32ca30354a",
+          "prompt": "Create an array containing the numbers 1 through 5 using Array.from().",
+          "answer": "const numbers = Array.from({ length: 5 }, (_, i) => i + 1);"
+        },
+        {
+          "id": "6db7d7c0-f39d-4db8-9aef-3d2a58a2e3ca",
+          "prompt": "Use .map() to transform an array of numbers into an array of strings.",
+          "answer": "const strings = numbers.map(n => String(n));"
+        },
+        {
+          "id": "9d3b7026-8b57-47b3-8f47-bf7222a40909",
+          "prompt": "Use .filter() to create a new array containing only numbers divisible by 3.",
+          "answer": "const divisibleBy3 = numbers.filter(n => n % 3 === 0);"
+        },
+        {
+          "id": "1b24a5a3-a5f2-4413-a2ac-a19ecf74e6ec",
+          "prompt": "Use .includes() to check whether an array named values contains the string \"Fizz\".",
+          "answer": "values.includes(\"Fizz\");"
+        },
+        {
+          "id": "fa6a6f87-4995-4842-8890-8ba6ce2c4b2a",
+          "prompt": "Use destructuring assignment to extract the first and second elements of an array named result into variables first and second.",
+          "answer": "const [first, second] = result;"
+        },
+        {
+          "id": "ddb1671f-3201-4901-9c28-9aa93fb6b4d3",
+          "prompt": "What does the following expression evaluate to? typeof []; Write the expected JavaScript value.",
+          "answer": "\"object\""
+        },
+        {
+          "id": "47227007-9b32-445c-9b63-06c063af29cd",
+          "prompt": "Convert the string \"123\" into a number explicitly without using the unary + operator.",
+          "answer": "Number(\"123\")"
+        },
+        {
+          "id": "5d2d2acd-dffa-4245-ae24-f6a939ba9b9c",
+          "prompt": "What does the following expression return? Boolean(\"\"). Write the expected value.",
+          "answer": "false"
+        },
+        {
+          "id": "0bcf6d24-37b7-4629-ae24-6c7823a8643d",
+          "prompt": "Write a condition that checks whether a variable n is a valid integer and is greater than or equal to zero.",
+          "answer": "Number.isInteger(n) && n >= 0"
+        },
+        {
+          "id": "92ac0511-0415-48fc-aeae-425e3c23cf58",
+          "prompt": "Create an array of numbers from 1 through n, then use .map() to generate the FizzBuzz output. Use a single expression to construct the array.",
+          "answer": "const result = Array.from({ length: n }, (_, i) => i + 1).map(i => i % 15 === 0 ? \"FizzBuzz\" : i % 3 === 0 ? \"Fizz\" : i % 5 === 0 ? \"Buzz\" : String(i));"
+        },
+        {
+          "id": "80bb1936-cc02-4a2f-80d2-b980d171ea6d",
+          "prompt": "Write a FizzBuzz function using Array.from() and an arrow function. The function must return an array of strings from 1 through n.",
+          "answer": "const fizzBuzz = n => Array.from({ length: n }, (_, i) => {\n    const x = i + 1;\n    return x % 15 === 0 ? \"FizzBuzz\" : x % 3 === 0 ? \"Fizz\" : x % 5 === 0 ? \"Buzz\" : String(x);\n});"
+        },
+        {
+          "id": "fec7811b-1f5d-4afd-855a-bcdf6e7a8afa",
+          "prompt": "Check whether a variable x is exactly the special NaN value.",
+          "answer": "Number.isNaN(x)"
+        },
+        {
+          "id": "cbff3e62-df14-465c-8f44-5e7d8519ab5d",
+          "prompt": "Get the length of the string \"hello\"",
+          "answer": "\"hello\".length"
+        },
+        {
+          "id": "fb2b2e2f-dac6-427f-ba48-23118ad210fe",
+          "prompt": "Extract the first two elements of an array arr into variables first and second using destructuring",
+          "answer": "let [first, second] = arr;"
+        },
+        {
+          "id": "713ca269-66f6-4c75-9ccb-e9da4a75cf83",
+          "prompt": "Convert the number 255 to a hexadecimal string without the \"0x\" prefix.",
+          "answer": "(255).toString(16)"
+        },
+        {
+          "id": "f1d3b2bb-9730-4e0e-8164-ae1ef3596dbd",
+          "prompt": "Parse the string \"ff\" as a hexadecimal integer using parseInt.",
+          "answer": "parseInt(\"ff\", 16)"
+        },
+        {
+          "id": "aaf48ebc-bd7d-41cd-b31f-d086b07bedb9",
+          "prompt": "Use array destructuring with the rest operator to get the first element of [1, 2, 3, 4] as first and the remaining elements as rest.",
+          "answer": "let [first, ...rest] = [1, 2, 3, 4];"
+        },
+        {
+          "id": "c47c53be-1e0b-4cbd-a4a0-ac917bb547a1",
+          "prompt": "What does the following expression evaluate to? 0.1 + 0.2 === 0.3",
+          "answer": "false"
+        },
+        {
+          "id": "7d528c6a-438a-49fd-9517-94a4963b2310",
+          "prompt": "What does typeof null return?",
+          "answer": "\"object\""
+        },
+        {
+          "id": "6f773985-0493-44e8-aad4-8bad7bb4f65f",
+          "prompt": "What does [] == false evaluate to?",
+          "answer": "true"
+        },
+        {
+          "id": "0fdc503a-cf92-455e-aebb-846b02b793bd",
+          "prompt": "What does Number([]) return?",
+          "answer": "0"
+        },
+        {
+          "id": "da98178b-7e5d-4dc4-91b3-a82e5c8afe82",
+          "prompt": "What does Number([99]) return?",
+          "answer": "99"
+        },
+        {
+          "id": "752bdb44-9bec-45be-bb6d-a521da431a96",
+          "prompt": "What does \"5\" * \"4\" evaluate to?",
+          "answer": "20"
+        },
+        {
+          "id": "451f40f5-fcb1-4511-9e12-fcfcbdf0c8fd",
+          "prompt": "What is the result of Symbol.for(\"shared\") === Symbol.for(\"shared\")?",
+          "answer": "true"
+        },
+        {
+          "id": "5f2bbf8b-3286-4613-b8fb-c9f2c4173de8",
+          "prompt": "What is the length of the string produced by the tagged template String.raw`\\n`?",
+          "answer": "2"
         }
       ]
     },
@@ -220,9 +490,271 @@
           "answer": "error instanceof TypeError"
         }
       ]
+    },
+    {
+      "id": "acbb545e-53e3-4042-b1dd-f96219357950",
+      "title": "museum sessions/cookies/authentication",
+      "language": "Node.js",
+      "questions": [
+        {
+          "id": 1,
+          "prompt": "Import Node.js's built-in crypto module.",
+          "answer": "const crypto = require('crypto');"
+        },
+        {
+          "id": 2,
+          "prompt": "Create a new in-memory Map named sessions.",
+          "answer": "const sessions = new Map();"
+        },
+        {
+          "id": 3,
+          "prompt": "Generate a 16-byte random session ID and convert it to a hexadecimal string.",
+          "answer": "const sessionId = crypto.randomBytes(16).toString('hex');"
+        },
+        {
+          "id": 4,
+          "prompt": "Store userData in the sessions Map using sessionId as the key.",
+          "answer": "sessions.set(sessionId, userData);"
+        },
+        {
+          "id": 5,
+          "prompt": "Return the generated session ID from createSession.",
+          "answer": "return sessionId;"
+        },
+        {
+          "id": 6,
+          "prompt": "Retrieve a session from the sessions Map using sessionId.",
+          "answer": "return sessions.get(sessionId);"
+        },
+        {
+          "id": 7,
+          "prompt": "Delete a session from the sessions Map.",
+          "answer": "sessions.delete(sessionId);"
+        },
+        {
+          "id": 8,
+          "prompt": "Create an empty object named cookies.",
+          "answer": "const cookies = {};"
+        },
+        {
+          "id": 9,
+          "prompt": "Return the cookies object if cookieHeader is falsy.",
+          "answer": "if (!cookieHeader) return cookies;"
+        },
+        {
+          "id": 10,
+          "prompt": "Split a cookie header string into an array using semicolons.",
+          "answer": "cookieHeader.split(';');"
+        },
+        {
+          "id": 11,
+          "prompt": "Split a cookie string into key and value variables using destructuring.",
+          "answer": "const [key, value] = cookie.split('=');"
+        },
+        {
+          "id": 12,
+          "prompt": "Trim whitespace from a cookie key.",
+          "answer": "key.trim();"
+        },
+        {
+          "id": 13,
+          "prompt": "Decode a URL-encoded cookie value.",
+          "answer": "decodeURIComponent(value.trim());"
+        },
+        {
+          "id": 14,
+          "prompt": "Assign a decoded cookie value to a cookies object using a dynamic key.",
+          "answer": "cookies[key.trim()] = decodeURIComponent(value.trim());"
+        },
+        {
+          "id": 15,
+          "prompt": "Export createSession, getSession, deleteSession, and parseCookies from a CommonJS module.",
+          "answer": "module.exports = { createSession, getSession, deleteSession, parseCookies };"
+        },
+        {
+          "id": 16,
+          "prompt": "Import loginAttempt from ../database/login.",
+          "answer": "const { loginAttempt } = require('../database/login');"
+        },
+        {
+          "id": 17,
+          "prompt": "Import readJsonBody from ../utils/http.",
+          "answer": "const { readJsonBody } = require('../utils/http');"
+        },
+        {
+          "id": 18,
+          "prompt": "Import createSession from ../utils/sessions.",
+          "answer": "const { createSession } = require('../utils/sessions');"
+        },
+        {
+          "id": 19,
+          "prompt": "Declare an async function named loginHandler that accepts req and res.",
+          "answer": "async function loginHandler(req, res) {"
+        },
+        {
+          "id": 20,
+          "prompt": "Read the JSON request body from req using await.",
+          "answer": "const body = await readJsonBody(req);"
+        },
+        {
+          "id": 21,
+          "prompt": "Attempt a login using the username and password from the request body.",
+          "answer": "const loginResults = await loginAttempt({ username: body.username, password: body.password });"
+        },
+        {
+          "id": 22,
+          "prompt": "Check whether loginResults is falsy.",
+          "answer": "if (!loginResults) {"
+        },
+        {
+          "id": 23,
+          "prompt": "Send a 401 Unauthorized response.",
+          "answer": "res.writeHead(401, { 'Content-Type': 'application/json' });"
+        },
+        {
+          "id": 24,
+          "prompt": "Send an error response containing 'Invalid username or password'.",
+          "answer": "res.end(JSON.stringify({ error: 'Invalid username or password' }));"
+        },
+        {
+          "id": 25,
+          "prompt": "Exit the function early after sending a response.",
+          "answer": "return;"
+        },
+        {
+          "id": 26,
+          "prompt": "Create a session containing the logged-in user's username and role.",
+          "answer": "const sessionId = createSession({ username: loginResults.username, role: loginResults.role });"
+        },
+        {
+          "id": 27,
+          "prompt": "Create an object that maps the curator role to /curator/artwork.",
+          "answer": "const routeByRole = { curator: '/curator/artwork' };"
+        },
+        {
+          "id": 28,
+          "prompt": "Send a successful HTTP response with status code 200.",
+          "answer": "res.writeHead(200, { 'Content-Type': 'application/json' });"
+        },
+        {
+          "id": 29,
+          "prompt": "Set a sessionId cookie using a template literal.",
+          "answer": "`sessionId=${sessionId}; HttpOnly; Path=/; SameSite=Strict`"
+        },
+        {
+          "id": 30,
+          "prompt": "Add a Set-Cookie header that stores the session ID.",
+          "answer": "\"Set-Cookie\": `sessionId=${sessionId}; HttpOnly; Path=/; SameSite=Strict`"
+        },
+        {
+          "id": 31,
+          "prompt": "Convert a JavaScript object into a JSON string.",
+          "answer": "JSON.stringify(obj);"
+        },
+        {
+          "id": 32,
+          "prompt": "Return a role-specific redirect path or '/' if the role is not found.",
+          "answer": "routeByRole[loginResults.role] || '/'"
+        },
+        {
+          "id": 33,
+          "prompt": "Access the username property from loginResults.",
+          "answer": "loginResults.username"
+        },
+        {
+          "id": 34,
+          "prompt": "Access the role property from loginResults.",
+          "answer": "loginResults.role"
+        },
+        {
+          "id": 35,
+          "prompt": "Export loginHandler from a CommonJS module.",
+          "answer": "module.exports = { loginHandler };"
+        },
+        {
+          "id": 36,
+          "prompt": "Create an object property whose key is determined at runtime.",
+          "answer": "cookies[key] = value;"
+        },
+        {
+          "id": 37,
+          "prompt": "Generate cryptographically secure random bytes in Node.js.",
+          "answer": "crypto.randomBytes(16);"
+        },
+        {
+          "id": 38,
+          "prompt": "Convert a Buffer to a hexadecimal string.",
+          "answer": "buffer.toString('hex');"
+        },
+        {
+          "id": 39,
+          "prompt": "Retrieve the session ID cookie from a parsed cookies object.",
+          "answer": "cookies.sessionId"
+        },
+        {
+          "id": 40,
+          "prompt": "Retrieve a user's session using the session ID stored in cookies.",
+          "answer": "getSession(cookies.sessionId);"
+        },
+        {
+          "id": 41,
+          "prompt": "Parse cookies from an incoming HTTP request header.",
+          "answer": "parseCookies(req.headers.cookie);"
+        },
+        {
+          "id": 42,
+          "prompt": "Use object destructuring to import createSession from a module.",
+          "answer": "const { createSession } = require('../utils/sessions');"
+        },
+        {
+          "id": 43,
+          "prompt": "Look up a value in a Map using a key.",
+          "answer": "sessions.get(sessionId);"
+        },
+        {
+          "id": 44,
+          "prompt": "Store a key-value pair in a Map.",
+          "answer": "sessions.set(sessionId, userData);"
+        },
+        {
+          "id": 45,
+          "prompt": "Delete a key-value pair from a Map.",
+          "answer": "sessions.delete(sessionId);"
+        },
+        {
+          "id": 46,
+          "prompt": "Create a function named createSession that accepts userData.",
+          "answer": "function createSession(userData) {"
+        },
+        {
+          "id": 47,
+          "prompt": "Create a function named getSession that accepts sessionId.",
+          "answer": "function getSession(sessionId) {"
+        },
+        {
+          "id": 48,
+          "prompt": "Create a function named deleteSession that accepts sessionId.",
+          "answer": "function deleteSession(sessionId) {"
+        },
+        {
+          "id": 49,
+          "prompt": "Create a function named parseCookies that accepts cookieHeader.",
+          "answer": "function parseCookies(cookieHeader) {"
+        },
+        {
+          "id": 50,
+          "prompt": "Iterate over an array and execute a callback for each item.",
+          "answer": "items.forEach(item => console.log(item));"
+        }
+      ]
     }
   ],
   "attempts": [
-
+    {
+      "quizId": "javascript-basics",
+      "score": 10,
+      "total": 20,
+      "completedAt": "2026-11-09T16:21:06.417Z"
+    }
   ]
 }
