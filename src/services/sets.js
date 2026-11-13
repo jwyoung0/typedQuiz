@@ -102,6 +102,7 @@ export function createSetService(repository) {
       const set = findSet(data, setId);
       const question = {
         id: randomUUID(),
+        type: "typed",
         prompt: requiredText(prompt, "Prompt and answer are required."),
         answer: requiredText(answer, "Prompt and answer are required.")
       };

@@ -74,3 +74,23 @@ test("public quiz listings omit answer fields", async () => {
     questions: [{ id: "q1", prompt: "Question" }]
   }]);
 });
+
+test("new questions default to type", async () => {
+  const repository = createMemoryRepository({
+    quizzes: [{
+      id: "set1",
+      title: "Basics",
+      language: "JS",
+      questions: []
+    }]
+  });
+  
+  const sets = createSetService(repository);
+
+  const question = await sets.createQuestion("set1", {
+    prompt: "What is const?",
+    answer: "A constant binding"
+  });
+
+  assert.equal(question.type, "typed");  
+});
