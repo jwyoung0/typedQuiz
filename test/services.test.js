@@ -94,3 +94,26 @@ test("new questions default to type", async () => {
 
   assert.equal(question.type, "typed");  
 });
+
+test("questions without a stored type are normalized to typed", async () => {
+  const repository = createMemoryRepository({
+    quizzes: [{
+      id: "set1",
+      title: "Basics",
+      language: "JS",
+      questions: [{
+        id: "q1",
+        prompt: "What is const?",
+        answer: "A constant binding"
+      }]
+    }]
+  });
+
+  const sets = createSetService(repository);
+  const result = await sets.get("set1");
+
+  assert.equal(
+    result.questions[0].type,
+    "typed"
+  );
+})

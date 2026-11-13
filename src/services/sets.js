@@ -1,6 +1,13 @@
 import { randomUUID } from "crypto";
 import { HttpError } from "../errors.js";
 
+function normalizeQuestion(question) {
+  return {
+    type: "typed",
+    ...question
+  };
+}
+
 function requiredText(value, message) {
   if (typeof value !== "string" || !value.trim()) {
     throw new HttpError(400, message);
@@ -40,7 +47,12 @@ export function createSetService(repository) {
     },
 
     async get(setId) {
-      return findSet(await repository.read(), setId);
+      const set = findSet(await repository.read(), setId);
+
+      return {
+        ...set,
+        questions: set.questions.map(normalizeQuestion)
+      };
     },
 
     async create({ title, language }) {
@@ -94,7 +106,9 @@ export function createSetService(repository) {
     },
 
     async listQuestions(setId) {
-      return findSet(await repository.read(), setId).questions;
+      return findSet(await repository.read(), setId)
+      .questions
+      .map(normalizeQuestion);
     },
 
     async createQuestion(setId, { prompt, answer }) {
