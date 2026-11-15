@@ -1,4 +1,5 @@
 import { HttpError } from "../errors.js";
+import { normalizeQuestion } from "../domain/question-types.js";
 
 export function createQuizService(repository) {
   return {
@@ -8,13 +9,19 @@ export function createQuizService(repository) {
         id: quiz.id,
         title: quiz.title,
         language: quiz.language,
-        questions: quiz.questions.map(({ answer, ...question }) => question)
+        questions: quiz.questions.map((question) => {
+          const { answer, ...publicQuestion } = normalizeQuestion(question);
+          return publicQuestion;
+        })
       }));
     },
 
     async listWithAnswers() {
       const data = await repository.read();
-      return data.quizzes;
+      return data.quizzes.map((quiz) => ({
+        ...quiz,
+        questions: quiz.questions.map(normalizeQuestion)
+      }));
     },
 
     async getExport() {

@@ -1,18 +1,22 @@
 import { randomUUID } from "crypto";
 import { HttpError } from "../errors.js";
 import {
+  normalizeQuestion,
+  normalizeQuestionType,
   QUESTION_TYPES,
   SUPPORTED_QUESTION_TYPES
 } from "../domain/question-types.js";
 
-function normalizeQuestion(question) {
+function normalizeSet(set) {
   return {
-    type: QUESTION_TYPES.TYPED,
-    ...question
+    ...set,
+    questions: set.questions.map(normalizeQuestion)
   };
 }
 
 function validateQuestionType(type) {
+  type = normalizeQuestionType(type);
+
   if (!SUPPORTED_QUESTION_TYPES.includes(type)) {
     throw new HttpError(400, "Invalid question type.");
   }
@@ -60,11 +64,7 @@ export function createSetService(repository) {
 
     async get(setId) {
       const set = findSet(await repository.read(), setId);
-
-      return {
-        ...set,
-        questions: set.questions.map(normalizeQuestion)
-      };
+      return normalizeSet(set);
     },
 
     async create({ title, language }) {
@@ -97,7 +97,7 @@ export function createSetService(repository) {
       }
 
       await repository.write(data);
-      return set;
+      return normalizeSet(set);
     },
 
     async delete(setId) {
@@ -114,7 +114,7 @@ export function createSetService(repository) {
       );
 
       await repository.write(data);
-      return set;
+      return normalizeSet(set);
     },
 
     async listQuestions(setId) {
@@ -123,19 +123,22 @@ export function createSetService(repository) {
       .map(normalizeQuestion);
     },
 
-    async createQuestion(setId, { prompt, answer }) {
+    async createQuestion(
+      setId,
+      { prompt, answer, type = QUESTION_TYPES.TEXT_ENTRY }
+    ) {
       const data = await repository.read();
       const set = findSet(data, setId);
       const question = {
         id: randomUUID(),
-        type: validateQuestionType("typed"),
+        type: validateQuestionType(type),
         prompt: requiredText(prompt, "Prompt and answer are required."),
         answer: requiredText(answer, "Prompt and answer are required.")
       };
 
       set.questions.push(question);
       await repository.write(data);
-      return question;
+      return normalizeQuestion(question);
     },
 
     async updateQuestion(setId, questionId, changes) {
@@ -158,7 +161,7 @@ export function createSetService(repository) {
       }
 
       await repository.write(data);
-      return question;
+      return normalizeQuestion(question);
     },
 
     async deleteQuestion(setId, questionId) {
@@ -174,7 +177,7 @@ export function createSetService(repository) {
 
       const [question] = set.questions.splice(index, 1);
       await repository.write(data);
-      return question;
+      return normalizeQuestion(question);
     }
   };
 }

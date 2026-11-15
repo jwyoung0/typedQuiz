@@ -71,11 +71,44 @@ test("public quiz listings omit answer fields", async () => {
     id: "one",
     title: "One",
     language: "JS",
-    questions: [{ id: "q1", prompt: "Question" }]
+    questions: [{
+      id: "q1",
+      prompt: "Question",
+      type: "text-entry"
+    }]
   }]);
 });
 
-test("new questions default to type", async () => {
+test("quiz listings with answers normalize legacy question types", async () => {
+  const repository = createMemoryRepository({
+    quizzes: [{
+      id: "one",
+      title: "One",
+      language: "JS",
+      questions: [{
+        id: "q1",
+        type: "typed",
+        prompt: "Question",
+        answer: "Answer"
+      }]
+    }]
+  });
+  const quizzes = createQuizService(repository);
+
+  assert.deepEqual(await quizzes.listWithAnswers(), [{
+    id: "one",
+    title: "One",
+    language: "JS",
+    questions: [{
+      id: "q1",
+      type: "text-entry",
+      prompt: "Question",
+      answer: "Answer"
+    }]
+  }]);
+});
+
+test("new questions default to text-entry type", async () => {
   const repository = createMemoryRepository({
     quizzes: [{
       id: "set1",
@@ -84,7 +117,7 @@ test("new questions default to type", async () => {
       questions: []
     }]
   });
-  
+
   const sets = createSetService(repository);
 
   const question = await sets.createQuestion("set1", {
@@ -92,10 +125,14 @@ test("new questions default to type", async () => {
     answer: "A constant binding"
   });
 
-  assert.equal(question.type, "typed");  
+  assert.equal(question.type, "text-entry");
+  assert.equal(
+    repository.snapshot().quizzes[0].questions[0].type,
+    "text-entry"
+  );
 });
 
-test("questions without a stored type are normalized to typed", async () => {
+test("questions without a stored type are normalized to text-entry", async () => {
   const repository = createMemoryRepository({
     quizzes: [{
       id: "set1",
@@ -114,9 +151,95 @@ test("questions without a stored type are normalized to typed", async () => {
 
   assert.equal(
     result.questions[0].type,
-    "typed"
+    "text-entry"
   );
-})
+});
+
+test("legacy typed questions are normalized to text-entry", async () => {
+  const repository = createMemoryRepository({
+    quizzes: [{
+      id: "set1",
+      title: "Basics",
+      language: "JS",
+      questions: [{
+        id: "q1",
+        type: "typed",
+        prompt: "What is const?",
+        answer: "A constant binding"
+      }]
+    }]
+  });
+
+  const sets = createSetService(repository);
+  const result = await sets.get("set1");
+
+  assert.equal(result.questions[0].type, "text-entry");
+  assert.equal(repository.snapshot().quizzes[0].questions[0].type, "typed");
+});
+
+test("stored future question types remain unchanged", async () => {
+  const repository = createMemoryRepository({
+    quizzes: [{
+      id: "set1",
+      title: "Basics",
+      language: "JS",
+      questions: [{
+        id: "q1",
+        type: "multiple-choice",
+        prompt: "Question",
+        answer: "Answer"
+      }]
+    }]
+  });
+  const sets = createSetService(repository);
+
+  assert.equal((await sets.get("set1")).questions[0].type, "multiple-choice");
+});
+
+test("question creation normalizes legacy type values", async () => {
+  const repository = createMemoryRepository({
+    quizzes: [{
+      id: "set1",
+      title: "Basics",
+      language: "JS",
+      questions: []
+    }]
+  });
+  const sets = createSetService(repository);
+
+  const question = await sets.createQuestion("set1", {
+    type: "typed",
+    prompt: "Question",
+    answer: "Answer"
+  });
+
+  assert.equal(question.type, "text-entry");
+  assert.equal(
+    repository.snapshot().quizzes[0].questions[0].type,
+    "text-entry"
+  );
+});
+
+test("question creation rejects unsupported types", async () => {
+  const repository = createMemoryRepository({
+    quizzes: [{
+      id: "set1",
+      title: "Basics",
+      language: "JS",
+      questions: []
+    }]
+  });
+  const sets = createSetService(repository);
+
+  await assert.rejects(
+    sets.createQuestion("set1", {
+      type: "multiple-choice",
+      prompt: "Question",
+      answer: "Answer"
+    }),
+    { status: 400, message: "Invalid question type." }
+  );
+});
 
 test("listQuestions returns normalized question types", async () => {
   const repository = createMemoryRepository({
@@ -136,5 +259,5 @@ test("listQuestions returns normalized question types", async () => {
 
   const questions = await sets.listQuestions("set1");
 
-  assert.equal(questions[0].type, "typed");
+  assert.equal(questions[0].type, "text-entry");
 });
