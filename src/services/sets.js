@@ -1,11 +1,23 @@
 import { randomUUID } from "crypto";
 import { HttpError } from "../errors.js";
+import {
+  QUESTION_TYPES,
+  SUPPORTED_QUESTION_TYPES
+} from "../domain/question-types.js";
 
 function normalizeQuestion(question) {
   return {
-    type: "typed",
+    type: QUESTION_TYPES.TYPED,
     ...question
   };
+}
+
+function validateQuestionType(type) {
+  if (!SUPPORTED_QUESTION_TYPES.includes(type)) {
+    throw new HttpError(400, "Invalid question type.");
+  }
+
+  return type;
 }
 
 function requiredText(value, message) {
@@ -116,7 +128,7 @@ export function createSetService(repository) {
       const set = findSet(data, setId);
       const question = {
         id: randomUUID(),
-        type: "typed",
+        type: validateQuestionType("typed"),
         prompt: requiredText(prompt, "Prompt and answer are required."),
         answer: requiredText(answer, "Prompt and answer are required.")
       };

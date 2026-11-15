@@ -117,3 +117,24 @@ test("questions without a stored type are normalized to typed", async () => {
     "typed"
   );
 })
+
+test("listQuestions returns normalized question types", async () => {
+  const repository = createMemoryRepository({
+    quizzes: [{
+      id: "set1",
+      title: "Basics",
+      language: "JS",
+      questions: [{
+        id: "q1",
+        prompt: "Question",
+        answer: "Answer"
+      }]
+    }]
+  });
+
+  const sets = createSetService(repository);
+
+  const questions = await sets.listQuestions("set1");
+
+  assert.equal(questions[0].type, "typed");
+});
