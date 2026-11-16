@@ -1,5 +1,5 @@
 import { api, showError } from "./api.js";
-import { getEvaluator } from "./evaluators/evaluator-registry.js";
+import { getEvaluator } from "./evaluators/index.js";
 
 export function createQuiz() {
   const managementScreen = document.querySelector("#management-screen");
@@ -20,9 +20,6 @@ export function createQuiz() {
   let currentQuestionIndex = 0;
   let score = 0;
 
-  // function normalize(value) {
-  //   return value.trim().replace(/\s+/g, " ").replace(/;$/, "");
-  // }
 
   function showQuestion() {
     const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -62,8 +59,6 @@ export function createQuiz() {
   submitButton.addEventListener("click", async () => {
     const currentQuestion = quizQuestions[currentQuestionIndex];
     const userAnswer = answerElement.value;
-    // const correct =
-    //   normalize(answerElement.value) === normalize(currentQuestion.answer);
 
     const evaluator = getEvaluator(currentQuestion.type);
 
