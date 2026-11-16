@@ -187,7 +187,7 @@
         },
         {
           "id": "fa6a6f87-4995-4842-8890-8ba6ce2c4b2a",
-          "prompt": "Use destructuring assignment to extract the first and second elements of an array named result into variables first and second.",
+          "prompt": "Use const and destructuring assignment to extract the first and second elements of an array named result into variables first and second.",
           "answer": "const [first, second] = result;"
         },
         {
@@ -289,6 +289,48 @@
           "id": "5f2bbf8b-3286-4613-b8fb-c9f2c4173de8",
           "prompt": "What is the length of the string produced by the tagged template String.raw`\\n`?",
           "answer": "2"
+        },
+        {
+          "id": "691b7e7e-22f5-442d-b1c0-85dc2cbf98dd",
+          "type": "text-entry",
+          "prompt": "Declare a variable named user and assign it an object containing a name property with the value \"Alice\"",
+          "answer": "let user = { name: \"Alice\" };"
+        },
+        {
+          "id": "acab6135-ba3c-467e-a9b3-a7f3bec33c7f",
+          "type": "text-entry",
+          "prompt": "Write an expression that evaluates to true if value is a string primitive.",
+          "answer": "typeof value === \"string\""
+        },
+        {
+          "id": "e1fe992c-ab43-48b5-9bef-c69b7c7dea69",
+          "type": "text-entry",
+          "prompt": "Create an array arr containing the numbers 1, 2, and 3.",
+          "answer": "let arr = [1, 2, 3];"
+        },
+        {
+          "id": "33a24596-0768-48e9-8781-72be28a8b6d3",
+          "type": "text-entry",
+          "prompt": "Add a property named age with value 30 to an existing object person.",
+          "answer": "person.age = 30;"
+        },
+        {
+          "id": "5e9ee5eb-cf7e-4f1d-a615-2a99f64c10ee",
+          "type": "text-entry",
+          "prompt": "Invoke the sort() method on array a.",
+          "answer": "a.sort();"
+        },
+        {
+          "id": "069a0a14-f416-4986-9efa-51ea1b01796e",
+          "type": "text-entry",
+          "prompt": "Regex to match one or more whitespace characters, everywhere in the string.",
+          "answer": "`/\\+/g`"
+        },
+        {
+          "id": "eebd2450-e8b0-498c-8592-ce1d95a675a3",
+          "type": "text-entry",
+          "prompt": "Regex to match a semicolon at the end",
+          "answer": "`/;$/`"
         }
       ]
     },
