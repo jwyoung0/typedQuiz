@@ -61,6 +61,7 @@ export function createQuiz() {
 
   submitButton.addEventListener("click", async () => {
     const currentQuestion = quizQuestions[currentQuestionIndex];
+    const userAnswer = answerElement.value;
     // const correct =
     //   normalize(answerElement.value) === normalize(currentQuestion.answer);
 
