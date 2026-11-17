@@ -803,6 +803,12 @@
       "score": 1,
       "total": 2,
       "completedAt": "2026-11-13T09:14:16.040Z"
+    },
+    {
+      "quizId": "python-basics",
+      "score": 0,
+      "total": 2,
+      "completedAt": "2026-11-17T07:13:08.284Z"
     }
   ]
 }

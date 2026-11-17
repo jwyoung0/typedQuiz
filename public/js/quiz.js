@@ -15,11 +15,12 @@ export function createQuiz() {
   const exitQuizButton = document.querySelector("#exit-quiz");
   const restartButton = document.querySelector("#restart");
 
+
   let selectedSet = null;
   let quizQuestions = [];
   let currentQuestionIndex = 0;
   let score = 0;
-
+  let responses = [];
 
   function showQuestion() {
     const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -40,7 +41,8 @@ export function createQuiz() {
       body: JSON.stringify({
         quizId: selectedSet.id,
         score,
-        total: quizQuestions.length
+        total: quizQuestions.length,
+        responses
       })
     });
 
@@ -58,17 +60,27 @@ export function createQuiz() {
 
   submitButton.addEventListener("click", async () => {
     const currentQuestion = quizQuestions[currentQuestionIndex];
-    const userAnswer = answerElement.value;
+    const submittedAnswer = answerElement.value;
 
     const evaluator = getEvaluator(currentQuestion.type);
 
     const result = evaluator.evaluate({
       question: currentQuestion,
-      answer: userAnswer,
+      answer: submittedAnswer,
     });
 
+    responses.push({
+      questionId: currentQuestion.id,
+      questionType: currentQuestion.type,
+      submittedAnswer,
+      correct: result.correct,
+      score: result.score,
+      feedback: result.feedback
+    });
+
+
     if (result.correct) {
-      score++;
+      score += result.score;
       feedbackElement.textContent = "Correct!";
       feedbackElement.className = "correct";
     } else {
@@ -116,9 +128,12 @@ export function createQuiz() {
 
       currentQuestionIndex = 0;
       score = 0;
+      responses = [];
+      
       managementScreen.hidden = true;
       quizScreen.hidden = false;
       resultsScreen.hidden = true;
+      
       showQuestion();
     }
   };
