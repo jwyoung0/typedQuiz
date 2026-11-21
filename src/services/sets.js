@@ -55,20 +55,24 @@ function findQuestion(set, questionId) {
 export function createSetService(repository) {
   return {
     async list() {
-      const data = await repository.read();
-      return data.quizzes.map(({ questions, ...quiz }) => ({
+      const sets = await repository.list();
+      return sets.map(({ questions, ...quiz }) => ({
         ...quiz,
         questionCount: questions.length
       }));
     },
 
     async get(setId) {
-      const set = findSet(await repository.read(), setId);
+      const set = await repository.getById(setId);
+
+      if (!set) {
+        throw new HttpError(404, "Set not found.");
+      }
+
       return normalizeSet(set);
     },
 
     async create({ title, language }) {
-      const data = await repository.read();
       const set = {
         id: randomUUID(),
         title: requiredText(title, "Title and language are required."),
@@ -76,108 +80,136 @@ export function createSetService(repository) {
         questions: []
       };
 
-      data.quizzes.push(set);
-      await repository.write(data);
+      await repository.create(set);
       return set;
     },
 
     async update(setId, changes) {
-      const data = await repository.read();
-      const set = findSet(data, setId);
+      const existing = await repository.getById(setId);
+      
+      if (!existing) {
+        throw new HttpError(404, "Set not found.");
+      }
+
+      const updates = {};
 
       if (changes.title !== undefined) {
-        set.title = requiredText(changes.title, "Title cannot be empty.");
+        updates.title = requiredText(changes.title, "Title cannot be empty.");
       }
 
       if (changes.language !== undefined) {
-        set.language = requiredText(
+        updates.language = requiredText(
           changes.language,
           "Language cannot be empty."
         );
       }
 
-      await repository.write(data);
-      return normalizeSet(set);
+      const updated = await repository.update(setId, updates);
+      return normalizeSet(updated);
     },
 
     async delete(setId) {
-      const data = await repository.read();
-      const index = data.quizzes.findIndex((quiz) => quiz.id === setId);
+      const deleted = await repository.delete(setId);
 
-      if (index === -1) {
+      if (!deleted) {
         throw new HttpError(404, "Set not found.");
       }
 
-      const [set] = data.quizzes.splice(index, 1);
-      data.attempts = (data.attempts ?? []).filter(
-        (attempt) => attempt.quizId !== setId
-      );
-
-      await repository.write(data);
-      return normalizeSet(set);
+      return normalizeSet(deleted);
     },
 
     async listQuestions(setId) {
-      return findSet(await repository.read(), setId)
-      .questions
-      .map(normalizeQuestion);
+      const questions = await repository.listQuestions(setId);
+
+      if (!questions) {
+        throw new HttpError(404, "Set not found.");
+      }
+
+      return questions.map(normalizeQuestion);
     },
 
     async createQuestion(
       setId,
       { prompt, answer, type = QUESTION_TYPES.TEXT_ENTRY }
     ) {
-      const data = await repository.read();
-      const set = findSet(data, setId);
+      const set = await repository.getById(setId);
+
+      if (!set) {
+        throw new HttpError(404, "Set not found.");
+      }
+
       const question = {
         id: randomUUID(),
         type: validateQuestionType(type),
         prompt: requiredText(prompt, "Prompt and answer are required."),
         answer: requiredText(answer, "Prompt and answer are required.")
       };
-
-      set.questions.push(question);
-      await repository.write(data);
+  
+      await repository.createQuestion(setId, question);
       return normalizeQuestion(question);
     },
 
     async updateQuestion(setId, questionId, changes) {
-      const data = await repository.read();
-      const set = findSet(data, setId);
-      const question = findQuestion(set, questionId);
+      const set = await repository.getById(setId);
+
+      if (!set) {
+        throw new HttpError(404, "Set not found.");
+      }
+
+      const question = set.questions.find(
+        (q) => q.id === questionId
+      );
+
+      if (!question) {
+        throw new HttpError(404, "Question not found.");
+      }
+
+      const updates = {};
 
       if (changes.prompt !== undefined) {
-        question.prompt = requiredText(
+        updates.prompt = requiredText(
           changes.prompt,
           "Prompt cannot be empty."
         );
       }
 
       if (changes.answer !== undefined) {
-        question.answer = requiredText(
+        updates.answer = requiredText(
           changes.answer,
           "Answer cannot be empty."
         );
       }
 
-      await repository.write(data);
-      return normalizeQuestion(question);
+      const updated = 
+        await repository.updateQuestion(
+          setId,
+          questionId,
+          updates
+        );
+
+      return normalizeQuestion(updated);
     },
 
     async deleteQuestion(setId, questionId) {
-      const data = await repository.read();
-      const set = findSet(data, setId);
-      const index = set.questions.findIndex(
-        (question) => question.id === questionId
-      );
+      const set = await repository.getById(setId);
 
-      if (index === -1) {
-        throw new HttpError(404, "Question not found.");
+      if (!set) {
+        throw new HttpError(404, "Set not found.");
       }
 
-      const [question] = set.questions.splice(index, 1);
-      await repository.write(data);
-      return normalizeQuestion(question);
+      const deleted = await repository.deleteQuestion(
+        setId,
+        questionId
+      );
+
+      if (!deleted) {
+        throw new HttpError(
+          404,
+          "Question not found."
+        );
+      }
+
+      return normalizeQuestion(deleted);
     }
   };
 }

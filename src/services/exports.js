@@ -3,8 +3,7 @@ import { HttpError } from "../errors.js";
 export function createExportService(repository) {
   return {
     async getSet(setId) {
-      const data = await repository.read();
-      const set = data.quizzes.find((quiz) => quiz.id === setId);
+      const set = await repository.getById(setId);
 
       if (!set) {
         throw new HttpError(404, "Set not found.");

@@ -4,8 +4,9 @@ import { normalizeQuestion } from "../domain/question-types.js";
 export function createQuizService(repository) {
   return {
     async list() {
-      const data = await repository.read();
-      return data.quizzes.map((quiz) => ({
+      const quizzes = await repository.list();
+      
+      return quizzes.map((quiz) => ({
         id: quiz.id,
         title: quiz.title,
         language: quiz.language,
@@ -17,16 +18,18 @@ export function createQuizService(repository) {
     },
 
     async listWithAnswers() {
-      const data = await repository.read();
-      return data.quizzes.map((quiz) => ({
+      const quizzes = await repository.list();
+      
+      return quizzes.map((quiz) => ({
         ...quiz,
         questions: quiz.questions.map(normalizeQuestion)
       }));
     },
 
     async getExport() {
-      const data = await repository.read();
-      return data.quizzes
+      const quizzes = await repository.list();
+      
+      return quizzes
         .map((quiz) => {
           const questions = quiz.questions
             .map(

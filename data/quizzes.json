@@ -789,6 +789,55 @@
           "answer": "items.forEach(item => console.log(item));"
         }
       ]
+    },
+    {
+      "id": "077e2827-4486-4db0-afb6-6d40a871eeb4",
+      "title": "JavaScript - Ch. 4 - Expressions and Operators",
+      "language": "JavaScript",
+      "questions": [
+        {
+          "id": "46dd36db-ff25-4696-9da7-83f7551071fa",
+          "type": "text-entry",
+          "prompt": "Safely access user.profile.name using optional chaining.",
+          "answer": "user?.profile?.name"
+        },
+        {
+          "id": "e4868979-cec8-4836-a19f-15c8002955ff",
+          "type": "text-entry",
+          "prompt": "Safely invoke optional callback function onComplete.",
+          "answer": "onComplete?.()"
+        },
+        {
+          "id": "39cae2ba-30c6-4b3a-9c00-f402884bfe03",
+          "type": "text-entry",
+          "prompt": "Convert string \"42\" to a number using unary plus.",
+          "answer": "+\"42\""
+        },
+        {
+          "id": "3e3c3d7d-f98a-4b7a-a362-ab1583c3e3d8",
+          "type": "text-entry",
+          "prompt": "Increment variable count and return the incremented value.",
+          "answer": "++count"
+        },
+        {
+          "id": "39bee228-eda7-4c7d-a0c9-a4dab4f9def0",
+          "type": "text-entry",
+          "prompt": "Increment variable count but return the old value.",
+          "answer": "count++"
+        },
+        {
+          "id": "a87a63b5-808c-43ab-ad17-7a2cf4133412",
+          "type": "text-entry",
+          "prompt": "Perform a bitwise AND between 0b1100 and 0b1010.",
+          "answer": "0b1100 & 0b1010"
+        },
+        {
+          "id": "129b71a8-fc26-4fac-a3f6-bac06a24664f",
+          "type": "text-entry",
+          "prompt": "Shift the number 7 left by 2 bits.",
+          "answer": "7 << 2"
+        }
+      ]
     }
   ],
   "attempts": [
